@@ -1,5 +1,5 @@
-import { initializeApp, getFirestore } from 'firebase/app';
-import { collection, addDoc } from 'firebase/firestore/lite';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc } from 'firebase/firestore/lite';
 
 // Importação de pacotes que NUNCA devem ser importadas dentro da
 pasta src/
