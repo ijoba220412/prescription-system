@@ -1,4 +1,3 @@
-```typescript
 import { initializeApp, getFirestore } from 'firebase/app';
 import { collection, addDoc } from 'firebase/firestore/lite';
 
@@ -63,4 +62,3 @@ async function seedData() {
 
 // Execução da função
 seedData();
-```
