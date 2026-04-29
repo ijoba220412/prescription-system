@@ -1,4 +1,3 @@
-```typescript
 import React from 'react';
 import { Button } from '@chakra-ui/react';
 
@@ -34,4 +33,3 @@ updateTomada }) => {
 };
 
 export default IntakeActions;
-```
