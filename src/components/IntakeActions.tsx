@@ -1,35 +1,36 @@
 import React from 'react';
-import { Button } from '@chakra-ui/react';
+
+// Tipagem baseada no nosso padrão global
+type AcaoTomada = 'tomado' | 'nao_tomado' | 'pulado';
 
 interface IntakeActionsProps {
-  tomada: HorarioAgendado & { index: number };
-  updateTomada: (index: number, newStatus: TomadaStatus) => void;
+  tomada: any; // Usando 'any' temporariamente para blindar o build contra tipos externos
+  onAction?: (acao: AcaoTomada) => void;
 }
 
-const IntakeActions: React.FC<IntakeActionsProps> = ({ tomada,
-updateTomada }) => {
+export function IntakeActions({ tomada, onAction }: IntakeActionsProps) {
   return (
-    <div className="flex gap-4">
-      <Button
-        onClick={() => updateTomada(tomada.index, 'tomado')}
-        colorScheme="green"
+    <div className="flex flex-wrap gap-3 mt-4">
+      <button
+        onClick={() => onAction && onAction('tomado')}
+        className="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
       >
         Tomado
-      </Button>
-      <Button
-        onClick={() => updateTomada(tomada.index, 'nao_tomado')}
-        colorScheme="red"
+      </button>
+      
+      <button
+        onClick={() => onAction && onAction('nao_tomado')}
+        className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
       >
         Não Tomado
-      </Button>
-      <Button
-        onClick={() => updateTomada(tomada.index, 'pulado')}
-        colorScheme="yellow"
+      </button>
+      
+      <button
+        onClick={() => onAction && onAction('pulado')}
+        className="px-4 py-2 text-sm font-medium text-gray-800 bg-yellow-400 rounded-lg shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors"
       >
         Pulado
-      </Button>
+      </button>
     </div>
   );
-};
-
-export default IntakeActions;
+}
