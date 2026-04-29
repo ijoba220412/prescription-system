@@ -1,4 +1,3 @@
-```typescript
 import React from 'react';
 import { Pills, Tablets } from 'lucide-react';
 
@@ -51,4 +50,3 @@ cápsulas.</span>
 };
 
 export default DosageImage;
-```
