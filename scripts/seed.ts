@@ -1,10 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore/lite';
 
-// Importação de pacotes que NUNCA devem ser importadas dentro da
-pasta src/
-const { Pill, Tablets, AlertTriangle } = require('lucide-react');
-
 // Configuração do Firebase App
 const firebaseConfig = {
   apiKey: "AIzaSyDqyKxM4idfyKhRssyq-M7Yzb5lCSWS1sU",
