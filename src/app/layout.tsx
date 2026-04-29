@@ -1,33 +1,51 @@
-```typescript
 import React from 'react';
-import { Box, Flex, Heading } from '@chakra-ui/react';
 import Link from 'next/link';
 
-const Layout: React.FC = ({ children }) => {
-  return (
-    <Box bg="gray.100" minH="100vh">
-      <Flex alignContent="center" h="24" px={8}
-justify-content="space-between">
-        <Link href="/profissionais" passHref>
-          <Heading>Profissionais</Heading>
-        </Link>
-        <Link href="/pacientes" passHref>
-          <Heading>Pacientes</Heading>
-        </Link>
-        <Link href="/medicamentos" passHref>
-          <Heading>Medicamentos</Heading>
-        </Link>
-        <Link href="/prescricoes" passHref>
-          <Heading>Prescrições</Heading>
-        </Link>
-        <Link href="/dashboard" passHref>
-          <Heading>Dashboard</Heading>
-        </Link>
-      </Flex>
-      <Box p={8}>{children}</Box>
-    </Box>
-  );
+// Configuração de SEO e título da aba do navegador
+export const metadata = {
+  title: 'Sistema de Prescrições',
+  description: 'Gerenciamento aberto de prescrições médicas',
 };
 
-export default Layout;
-```
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="pt-BR">
+      <body className="bg-gray-50 text-gray-900 antialiased">
+        <div className="min-h-screen flex flex-col md:flex-row">
+          
+          {/* Menu Lateral */}
+          <aside className="w-full md:w-64 bg-white border-r border-gray-200 p-6 flex-shrink-0">
+            <h2 className="text-2xl font-bold text-blue-600 mb-8">Rx System</h2>
+            <nav className="flex flex-col space-y-4">
+              <Link href="/dashboard" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Dashboard
+              </Link>
+              <Link href="/pacientes" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Pacientes
+              </Link>
+              <Link href="/profissionais" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Profissionais
+              </Link>
+              <Link href="/medicamentos" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Medicamentos
+              </Link>
+              <Link href="/prescricoes" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Prescrições
+              </Link>
+            </nav>
+          </aside>
+
+          {/* Área onde as páginas (como o Dashboard) vão aparecer */}
+          <main className="flex-1 p-8">
+            {children}
+          </main>
+          
+        </div>
+      </body>
+    </html>
+  );
+}
