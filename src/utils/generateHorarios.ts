@@ -7,7 +7,7 @@ interface HorarioAgendado {
   status: TomadaStatus;
 }
 
-const generateHorarios = (prescricao: Prescricao):
+const generateHorarios = (prescricao: Prescricao & { duracao: number }):
 HorarioAgendado[] => {
   const horarios: HorarioAgendado[] = [];
   let currentDate = new Date(prescricao.dataInicio);
