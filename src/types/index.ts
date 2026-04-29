@@ -1,4 +1,3 @@
-```typescript
 // Interface para Profissional
 export interface Profissional {
   id: string;
@@ -35,4 +34,3 @@ export interface Prescricao {
   dataInicio: Date;
   dataFim: Date;
 }
-```
