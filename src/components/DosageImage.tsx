@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pills, Tablets } from 'lucide-react';
+import { Pill, Tablets } from 'lucide-react';
 
 interface DosageImageProps {
   quantity: number;
@@ -28,7 +28,7 @@ cápsulas.</span>
       ) : form === 'comprimido' ? (
         <>
           {Math.floor(quantity) > 0 && (
-            <Pills size={24} className="text-green-500" />
+            <Pill size={24} className="text-green-500" />
           )}
           {isDecimal && (
             <div
