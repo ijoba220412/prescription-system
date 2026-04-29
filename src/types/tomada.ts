@@ -1,4 +1,3 @@
-```typescript
 // Enumeração para TomadaStatus
 export enum TomadaStatus {
   pendente = 'pendente',
@@ -9,4 +8,3 @@ export enum TomadaStatus {
 
 // Enumeração para AcaoTomada
 export type AcaoTomada = 'tomado' | 'nao_tomado' | 'pulado';
-```
