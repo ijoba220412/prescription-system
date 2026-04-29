@@ -1,34 +1,51 @@
 import React from 'react';
+import Link from 'next/link';
 
-export default function DashboardPage() {
+// Configuração de SEO e título da aba do navegador
+export const metadata = {
+  title: 'Sistema de Prescrições',
+  description: 'Gerenciamento aberto de prescrições médicas',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Painel de Prescrições
-      </h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h2 className="text-lg font-semibold text-gray-600">Tomadas Pendentes (Hoje)</h2>
-          <p className="text-4xl font-bold text-blue-600 mt-2">0</p>
-        </div>
-        
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h2 className="text-lg font-semibold text-gray-600">Taxa de Adesão</h2>
-          <p className="text-4xl font-bold text-green-600 mt-2">100%</p>
-        </div>
-        
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h2 className="text-lg font-semibold text-gray-600">Pacientes Ativos</h2>
-          <p className="text-4xl font-bold text-purple-600 mt-2">0</p>
-        </div>
-      </div>
+    <html lang="pt-BR">
+      <body className="bg-gray-50 text-gray-900 antialiased">
+        <div className="min-h-screen flex flex-col md:flex-row">
+          
+          {/* Menu Lateral */}
+          <aside className="w-full md:w-64 bg-white border-r border-gray-200 p-6 flex-shrink-0">
+            <h2 className="text-2xl font-bold text-blue-600 mb-8">Rx System</h2>
+            <nav className="flex flex-col space-y-4">
+              <Link href="/dashboard" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Dashboard
+              </Link>
+              <Link href="/pacientes" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Pacientes
+              </Link>
+              <Link href="/profissionais" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Profissionais
+              </Link>
+              <Link href="/medicamentos" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Medicamentos
+              </Link>
+              <Link href="/prescricoes" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                Prescrições
+              </Link>
+            </nav>
+          </aside>
 
-      <div className="mt-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-        <p className="text-gray-500 text-center">
-          O sistema está online e pronto para receber os dados do Firestore.
-        </p>
-      </div>
-    </div>
+          {/* Área onde as páginas (como o Dashboard) vão aparecer */}
+          <main className="flex-1 p-8">
+            {children}
+          </main>
+          
+        </div>
+      </body>
+    </html>
   );
 }
