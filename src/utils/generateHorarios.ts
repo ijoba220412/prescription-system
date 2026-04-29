@@ -1,7 +1,6 @@
 import { Prescricao } from '@/types/index';
 
 export type TomadaStatus = 'pendente' | 'tomado' | 'nao_tomado' | 'pulado';
-export type Prescricao = any;
 
 interface HorarioAgendado {
   data: Date;
