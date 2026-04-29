@@ -1,4 +1,3 @@
-```typescript
 import { Prescricao } from '@/types/index';
 
 interface HorarioAgendado {
@@ -36,4 +35,3 @@ HorarioAgendado[] => {
 };
 
 export default generateHorarios;
-```
