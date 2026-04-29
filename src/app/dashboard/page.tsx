@@ -1,59 +1,34 @@
-```typescript
 import React from 'react';
-import { useFirestore } from 'firebase/firestore';
-import { collection, getDocs } from 'firebase/firestore/lite';
-import { Box, Heading, Text } from '@chakra-ui/react';
 
-const Dashboard: React.FC = () => {
-  const db = useFirestore();
-  const [data, setData] = React.useState<{ totalPendentes:
-number; taxaAdesao: number }>({
-    totalPendentes: 0,
-    taxaAdesao: 0,
-  });
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const prescricoesCollectionRef = collection(db,
-'prescricoes');
-        const querySnapshot = await
-getDocs(prescricoesCollectionRef);
-        let totalPendentes = 0;
-
-        querySnapshot.forEach((doc) => {
-          const prescricao = doc.data() as Prescricao;
-          totalPendentes += prescricao.medicamentos.filter(
-            (medicamento) =>
-              medicamento.tomada.status === 'pendente' ||
-medicamento.tomada.status === 'nao_tomado'
-          ).length;
-        });
-
-        const taxaAdesao = Math.round((totalPendentes /
-querySnapshot.size) * 100);
-
-        setData({ totalPendentes, taxaAdesao });
-      } catch (error) {
-        console.error('Erro ao obter dados dos pacientes:',
-error);
-      }
-    };
-
-    fetchData();
-  }, [db]);
-
+export default function DashboardPage() {
   return (
-    <Box p={8}>
-      <Heading>Dashboard</Heading>
-      <Box mt={4}>
-        <Text>Total de tomadas pendentes:
-{data.totalPendentes}</Text>
-        <Text>Taxa de adesão geral: {data.taxaAdesao}%</Text>
-      </Box>
-    </Box>
-  );
-};
+    <div className="p-8 max-w-7xl mx-auto">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+        Painel de Prescrições
+      </h1>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <h2 className="text-lg font-semibold text-gray-600">Tomadas Pendentes (Hoje)</h2>
+          <p className="text-4xl font-bold text-blue-600 mt-2">0</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <h2 className="text-lg font-semibold text-gray-600">Taxa de Adesão</h2>
+          <p className="text-4xl font-bold text-green-600 mt-2">100%</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <h2 className="text-lg font-semibold text-gray-600">Pacientes Ativos</h2>
+          <p className="text-4xl font-bold text-purple-600 mt-2">0</p>
+        </div>
+      </div>
 
-export default Dashboard;
-```
+      <div className="mt-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p className="text-gray-500 text-center">
+          O sistema está online e pronto para receber os dados do Firestore.
+        </p>
+      </div>
+    </div>
+  );
+}
